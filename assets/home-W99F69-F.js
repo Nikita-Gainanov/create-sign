@@ -75,7 +75,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_e=O,j=x);const oe={co
               <tr style="height: 15px; vertical-align: top; text-align: left">
                 <td>
                   <a
-                    href="tel:Телефон"
+                    href="tel:${T}"
                     style="font-size: 10px; text-decoration: none; color: #484b55; display: block; line-height: 1.82"
                   >
                     ${T}
