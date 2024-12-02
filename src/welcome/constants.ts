@@ -10,7 +10,7 @@ export const ADDRESS_MAP: Record<ProjectType, string> = {
   magnetto: "undefined",
 };
 
-export const LOGO_BASE_64_URL_MAP: Record<ProjectType, string | null> = {
-  mGlobal: "https://www.mglobal.com/LOGO.jpg",
+export const LOGO_MAP: Record<ProjectType, string | null> = {
+  mGlobal: "mglobal-logo.png",
   magnetto: null,
 };

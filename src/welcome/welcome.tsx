@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import saveAs from "file-saver";
 // import imageCompression from "browser-image-compression";
-import { ADDRESS_MAP, LOGO_BASE_64_URL_MAP, WEBSITE_MAP } from "./constants";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { ADDRESS_MAP, LOGO_MAP, WEBSITE_MAP } from "./constants";
 import { ProjectType } from "./types";
 
 interface FormData {
@@ -17,6 +18,8 @@ interface FormData {
 }
 
 export const Welcome: React.FC = () => {
+  const BASE_PATH = import.meta.env.VITE_BASE_PATH;
+
   const {
     register,
     handleSubmit,
@@ -81,7 +84,7 @@ export const Welcome: React.FC = () => {
                   </div>
                 </td>
               </tr>
-              <tr style="height: 30px; vertical-align: top; text-align: left">
+              <tr style="height: 15px; vertical-align: top; text-align: left">
                 <td>
                   <a
                     href="mailto:${email}"
@@ -89,6 +92,10 @@ export const Welcome: React.FC = () => {
                   >
                     ${email}
                   </a>
+                </td>
+              </tr>
+              <tr style="height: 15px; vertical-align: top; text-align: left">
+                <td>
                   <a
                     href="tel:Телефон"
                     style="font-size: 10px; text-decoration: none; color: #484b55; display: block; line-height: 1.82"
@@ -118,8 +125,6 @@ export const Welcome: React.FC = () => {
                             target="_blank"
                             style="
                               padding: 1px;
-                              border-radius: 50%;
-                              border: 1px solid #7e8087;
                               text-decoration: none;
                               display: inline-block;
                               width: 20px;
@@ -127,7 +132,7 @@ export const Welcome: React.FC = () => {
                             "
                           >
                             <img
-                              src="https://famesters.github.io/signature/static/telegram@2x.png"
+                              src="${BASE_PATH}/telegram-2-fill.png"
                               alt="Telegram"
                               width="20px"
                               height="20px"
@@ -144,8 +149,6 @@ export const Welcome: React.FC = () => {
                             target="_blank"
                             style="
                               padding: 1px;
-                              border-radius: 50%;
-                              border: 1px solid #7e8087;
                               text-decoration: none;
                               display: inline-block;
                               width: 20px;
@@ -153,7 +156,7 @@ export const Welcome: React.FC = () => {
                             "
                             >
                               <img
-                                src="https://famesters.github.io/signature/static/linkedIn@2x.png"
+                                src="${BASE_PATH}/linkedin-box-fill.png"
                                 alt="Linked In"
                                 width="20px"
                                 height="20px"
@@ -170,8 +173,6 @@ export const Welcome: React.FC = () => {
                             target="_blank"
                             style="
                               padding: 1px;
-                              border-radius: 50%;
-                              border: 1px solid #7e8087;
                               text-decoration: none;
                               display: inline-block;
                               width: 20px;
@@ -179,7 +180,7 @@ export const Welcome: React.FC = () => {
                             "
                             >
                               <img
-                                src="https://famesters.github.io/signature/static/whatsapp@2x.png"
+                                src="${BASE_PATH}/whatsapp-fill.png"
                                 alt="WhatsApp"
                                 width="20px"
                                 height="20px"
@@ -199,9 +200,9 @@ export const Welcome: React.FC = () => {
                 <td>
                   <img
                     style="padding-top: 10px"
-                    width="72px"
+                    width="auto"
                     height="31px"
-                    src="${LOGO_BASE_64_URL_MAP[project]}"
+                    src="${BASE_PATH}/${LOGO_MAP[project]}"
                     alt="${project}"
                   />
                 </td>
@@ -270,7 +271,7 @@ export const Welcome: React.FC = () => {
   };
 
   return (
-    <div className="App p-4 bg-gray-100">
+    <div className="App p-4">
       <h1 className="text-xl font-bold">Создать подпись для E-mail</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
         <div>
@@ -375,10 +376,14 @@ export const Welcome: React.FC = () => {
       {signature && (
         <div>
           <h2>Generated Signature:</h2>
-          <div dangerouslySetInnerHTML={{ __html: signature }} className="bg-white p-2" />
-          <button onClick={downloadSignature} className="w-32 bg-green-600 text-white cursor-pointer p-2 mt-4">
-            Скачать файл
-          </button>
+          <div
+            dangerouslySetInnerHTML={{ __html: signature }}
+            className="bg-white p-2 border border-black border-solid rounded-lg p-4"
+          />
+          <div className="mt-6 font-bold text-xl -mb-2 ">Исходный код:</div>
+          <div className="max-h-60 overflow-scroll ">
+            <SyntaxHighlighter language="html">{signature}</SyntaxHighlighter>
+          </div>
         </div>
       )}
     </div>
