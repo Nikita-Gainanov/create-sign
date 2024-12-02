@@ -94,7 +94,7 @@ export const Welcome: React.FC = () => {
               <tr style="height: 15px; vertical-align: top; text-align: left">
                 <td>
                   <a
-                    href="tel:Телефон"
+                    href="tel:${phone}"
                     style="font-size: 10px; text-decoration: none; color: #484b55; display: block; line-height: 1.82"
                   >
                     ${phone}
