@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import saveAs from "file-saver";
-// import imageCompression from "browser-image-compression";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { ADDRESS_MAP, LOGO_MAP, WEBSITE_MAP } from "./constants";
 import { ProjectType } from "./types";
@@ -27,7 +25,6 @@ export const Welcome: React.FC = () => {
     formState: { errors },
   } = useForm<FormData>();
   const [signature, setSignature] = useState<string>("");
-  // const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [project, setProject] = useState<ProjectType>("mGlobal");
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
@@ -169,7 +166,7 @@ export const Welcome: React.FC = () => {
                       whatsapp
                         ? `
                           <a
-                            href="WhatsApp"
+                            href="https://${whatsapp}"
                             target="_blank"
                             style="
                               padding: 1px;
@@ -243,30 +240,8 @@ export const Welcome: React.FC = () => {
     setSignature(signatureHTML);
   };
 
-  // const handlePhotoChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = event.target.files?.[0];
-  //   if (file) {
-  //     try {
-  //       const options = { maxSizeMB: 1, maxWidthOrHeight: 51, useWebWorker: true };
-  //       const compressedFile = await imageCompression(file, options);
-
-  //       const reader = new FileReader();
-  //       reader.onload = (e) => setPhotoPreview(e.target?.result as string);
-  //       reader.readAsDataURL(compressedFile);
-  //     } catch (error) {
-  //       console.error("Ошибка сжатия изображения:", error);
-  //     }
-  //   }
-  // };
-
-  const downloadSignature = () => {
-    const blob = new Blob([signature], { type: "text/html;charset=utf-8" });
-    saveAs(blob, "email_signature.html");
-  };
-
   const resetForm = () => {
     reset();
-    // setPhotoPreview(null);
     setSignature("");
   };
 
@@ -353,16 +328,6 @@ export const Welcome: React.FC = () => {
           {errors.linkedin && <span style={{ color: "red" }}>{errors.linkedin.message}</span>}
         </div>
 
-        {/* <div className="flex gap-2">
-          <label>Photo:</label>
-          <input type="file" accept="image/*" onChange={handlePhotoChange} />
-        </div> */}
-
-        {/* {photoPreview && (
-          <div>
-            <img src={photoPreview} alt="Preview" width="51" style={{ borderRadius: "100%", height: "51px" }} />
-          </div>
-        )} */}
         <div className="flex gap-4">
           <button type="button" className="w-fit bg-red-600 text-white cursor-pointer p-2" onClick={resetForm}>
             Очистить форму
