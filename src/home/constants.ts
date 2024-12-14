@@ -1,8 +1,8 @@
 import { ProjectType } from "./types";
 
 export const WEBSITE_MAP: Record<ProjectType, string> = {
-  mGlobal: "mglobal.pro",
-  magnetto: "magnetto.pro",
+  mGlobal: "https://mglobal.pro",
+  magnetto: "https://magnetto.pro",
 };
 
 export const ADDRESS_MAP: Record<ProjectType, string> = {
