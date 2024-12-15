@@ -3,6 +3,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { ProjectType } from "./types";
 import { getSignatureTemplate } from "./Signaturetemplate";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./LangSwitcher";
 
 interface FormData {
   name: string;
@@ -17,6 +19,8 @@ interface FormData {
 }
 
 export const HomePage: React.FC = () => {
+  const { t } = useTranslation();
+
   const {
     register,
     handleSubmit,
@@ -52,10 +56,13 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="App p-4">
-      <h1 className="text-xl font-bold">Создать подпись для E-mail</h1>
+      <div className="flex justify-between">
+        <h1 className="text-xl font-bold"> {t("Header")}</h1>
+        <LanguageSwitcher />
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
         <div>
-          <label>Проект: </label>
+          <label>{t("Project")}: </label>
           <select value={project} onChange={(e) => setProject(e.target.value as "mGlobal" | "magnetto")}>
             <option value="mGlobal">mGlobal</option>
             <option value="magnetto">Magnetto</option>
@@ -63,54 +70,51 @@ export const HomePage: React.FC = () => {
         </div>
 
         <div className="flex gap-2">
-          <label>Имя:</label>
-          <input {...register("name", { required: true })} placeholder="Введите имя" />
+          <label>{t("Name")}:</label>
+          <input {...register("name", { required: true })} placeholder={t("Enter a name")} />
         </div>
 
         <div className="flex gap-2">
-          <label>Фамилия:</label>
-          <input {...register("surname", { required: true })} placeholder="Введите имя" />
+          <label>{t("Surname")}:</label>
+          <input {...register("surname", { required: true })} placeholder={t("Enter a surname")} />
         </div>
 
         <div className="flex gap-2">
-          <label>Должность:</label>
-          <input {...register("jobTitle", { required: true })} placeholder="Введите должность" />
+          <label>{t("Job title")}:</label>
+          <input {...register("jobTitle", { required: true })} placeholder={t("Enter a job title")} />
         </div>
 
         <div className="flex gap-2">
           <label>Email:</label>
-          <input
-            {...register("email", { required: true })}
-            placeholder="Введите адрес электронной почты"
-            type="email"
-          />
+          <input {...register("email", { required: true })} placeholder={t("Enter your e-mail address")} type="email" />
         </div>
 
         <div className="flex gap-2">
-          <label>Номер телефона:</label>
+          <label>{t("Phone number")}:</label>
           <input
             {...register("phone", {
               required: true,
-              validate: (value) => !value || value?.startsWith("+") || "Телефон должен начинаться на '+'",
+              validate: (value) => !value || value?.startsWith("+") || t("The phone must start with '+'"),
             })}
-            placeholder="Введите номер телефона"
+            placeholder={t("Enter the phone number")}
             type="tel"
           />
           {errors.phone && <span style={{ color: "red" }}>{errors.phone.message}</span>}
         </div>
 
         <div className="flex gap-2">
-          <label>Ссылка на аватар:</label>
-          <input {...register("avatarLink")} placeholder="Введите ссылку на аватор" />
+          <label>{t("Avatar link")}:</label>
+          <input {...register("avatarLink")} placeholder={t("Enter avatar link")} />
         </div>
 
         <div className="flex gap-2">
           <label>Telegram :</label>
           <input
             {...register("telegram", {
-              validate: (value) => !value || value?.startsWith("https://") || "Ссылка должна начинаться на 'https://'",
+              validate: (value) =>
+                !value || value?.startsWith("https://") || t('The link should start with "https://"'),
             })}
-            placeholder="Введите telegram аккаунт"
+            placeholder={t("Enter the link to your telegram account")}
           />
           {errors.telegram && <span style={{ color: "red" }}>{errors.telegram.message}</span>}
         </div>
@@ -119,9 +123,10 @@ export const HomePage: React.FC = () => {
           <label>Whatsapp:</label>
           <input
             {...register("whatsapp", {
-              validate: (value) => !value || value?.startsWith("https:///") || "Ссылка должна начинаться на 'https://'",
+              validate: (value) =>
+                !value || value?.startsWith("https:///") || t('The link should start with "https://"'),
             })}
-            placeholder="Введите адрес"
+            placeholder={t("Enter the link to your whatsapp account")}
           />
           {errors.whatsapp && <span style={{ color: "red" }}>{errors.whatsapp.message}</span>}
         </div>
@@ -130,19 +135,20 @@ export const HomePage: React.FC = () => {
           <label>Linkedin:</label>
           <input
             {...register("linkedin", {
-              validate: (value) => !value || value?.startsWith("https://") || "Ссылка должна начинаться на 'https://'",
+              validate: (value) =>
+                !value || value?.startsWith("https://") || t('The link should start with "https://"'),
             })}
-            placeholder="Введите адрес"
+            placeholder={t("Enter the link to your linkedin account")}
           />
           {errors.linkedin && <span style={{ color: "red" }}>{errors.linkedin.message}</span>}
         </div>
 
         <div className="flex gap-4">
           <button type="button" className="w-fit bg-red-600 text-white cursor-pointer p-2" onClick={resetForm}>
-            Очистить форму
+            {t("Clear the form")}
           </button>
           <button type="submit" className="w-fit bg-green-600 text-white cursor-pointer p-2">
-            Сгенерировать подпись
+            {t("Generate signature")}
           </button>
         </div>
       </form>
@@ -152,9 +158,9 @@ export const HomePage: React.FC = () => {
           <h2>Generated Signature:</h2>
           <div
             dangerouslySetInnerHTML={{ __html: signature }}
-            className="bg-white p-2 border border-black border-solid rounded-lg p-4"
+            className="bg-white border border-black border-solid rounded-lg p-4"
           />
-          <div className="mt-6 font-bold text-xl -mb-2 ">Исходный код:</div>
+          <div className="mt-6 font-bold text-xl -mb-2 "> {t("Source code")}</div>
           <div className="max-h-60 overflow-scroll ">
             <SyntaxHighlighter language="html">{signature}</SyntaxHighlighter>
           </div>

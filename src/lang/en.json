@@ -1,0 +1,25 @@
+{
+  "translation": {
+    "Header": "Create a signature for E-mail",
+    "Project": "Project",
+    "Name": "Name",
+    "Surname": "Surname",
+    "Job title": "Job title",
+    "Phone number": "Phone number",
+    "Avatar link": "Avatar link",
+    "Clear the form": "Clear the form",
+    "Generate signature": "Generate signature",
+    "Enter a name": "Enter a name",
+    "Enter a surname": "Enter a surname",
+    "Enter a job title": "Enter a job title",
+    "Enter your e-mail address": "Enter your e-mail address",
+    "The phone must start with '+'": "The phone must start with '+'",
+    "Enter the phone number": "Enter the phone number",
+    "Enter avatar link": "Enter avatar link",
+    "The link should start with 'https://'": "The link should start with 'https://'",
+    "Enter the link to your telegram account": "Enter the link to your telegram account",
+    "Enter the link to your whatsapp account": "Enter the link to your whatsapp account",
+    "Enter the link to your linkedin account": "Enter the link to your linkedin account",
+    "Source code": "Source code"
+  }
+}

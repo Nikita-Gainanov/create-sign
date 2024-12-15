@@ -1,0 +1,25 @@
+{
+  "translation": {
+    "Header": "Создать подпись для E-mail",
+    "Project": "Проект",
+    "Name": "Имя",
+    "Surname": "Фамилия",
+    "Job title": "Должность",
+    "Phone number": "Номер телефона",
+    "Avatar link": "Ссылка на аватар",
+    "Clear the form": "Очистить форму",
+    "Generate signature": "Сгенерировать подпись",
+    "Enter a name": "Введите имя",
+    "Enter a surname": "Введите фамилию",
+    "Enter a job title": "Введите должность",
+    "Enter your e-mail address": "Введите адрес электронной почты",
+    "The phone must start with '+'": "Телефон должен начинаться на '+'",
+    "Enter the phone number": "Введите номер телефона",
+    "Enter avatar link": "Введите ссылку на аватар",
+    "The link should start with 'https://'": "Ссылка должна начинаться на 'https://'",
+    "Enter the link to your telegram account": "Введите ссылку на telegram аккаунт",
+    "Enter the link to your whatsapp account": "Введите ссылку на whatsapp аккаунт",
+    "Enter the link to your linkedin account": "Введите ссылку на linkedin аккаунт",
+    "Source code": "Исходный код"
+  }
+}

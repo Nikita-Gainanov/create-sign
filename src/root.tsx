@@ -1,7 +1,17 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
-
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
+import enResources from "@/lang/en.json";
+import ruResources from "@/lang/ru.json";
+
+i18n.use(initReactI18next).init({
+  resources: { en: enResources, ru: ruResources },
+  lng: "en",
+  fallbackLng: "en",
+  interpolation: { escapeValue: false },
+});
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
